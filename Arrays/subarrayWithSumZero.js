@@ -2,21 +2,18 @@ module.exports = {
   //param A : array of integers
   //return an integer
   solve: function (A) {
-    let hashmap = new Map();
-    for (let i = 0; i < A.length; i++) {
-      if (hashmap[A[i]]) {
-        hashmap[A[i]]++;
+    let n = A.length;
+    let hashMap = new Map();
+    let count = 0;
+    for (let i = 0; i < n; i++) {
+      if (hashMap[A[i]]) {
+        count = hashMap[A[i]] == 1 ? (count = count - 1) : count;
+        hashMap[A[i]]++;
       } else {
-        hashmap[A[i]] = 1;
+        hashMap[A[i]] = 1;
+        count = count + 1;
       }
     }
-    let repeatingElements = -1;
-    for (let i = 0; i < A.length; i++) {
-      if (hashmap[A[i]] > 1) {
-        repeatingElements = A[i];
-        break;
-      }
-    }
-    return repeaatingElements;
+    return count;
   },
 };
